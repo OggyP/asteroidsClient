@@ -17,6 +17,8 @@ let players = []
 let asteroids = []
 let bullets = []
 
+let ownPlayerNum = 0
+
 // Game Constants
 const gameTickTime = 10 //ms
 const amoRestockCooldown = 500 //ms
@@ -31,46 +33,10 @@ const asteroidMovementSpeed = 0.0015
 const bulletSpeed = 0.004 // Added to ship speed
 const bulletLifeTime = 300
 
-// Testing
-players.push({
-        colour: 'red',
-        position: {
-            x: 1,
-            y: 0.5
-        },
-        facing: 0,
-        turnMomentum: 0,
-        amunition: amoAmount,
-        movementVector: {
-            x: 0,
-            y: 0
-        }
-    })
-    // End Testing
-
 let canvasSize = {
     x: 100,
     y: 100
 }
-
-
-function getCanvasResolutionAndUpdate() {
-    let newWidth = Math.min(($(window).height() * 2) - 50, $(window).width() - 50)
-    canvasSize = {
-        x: newWidth,
-        y: (newWidth / 2)
-    }
-
-    canvas.setAttribute('width', canvasSize.x);
-    canvas.setAttribute('height', canvasSize.y);
-    canvas.style.width = canvasSize.x;
-    canvas.style.height = canvasSize.y;
-}
-
-// On resize
-window.addEventListener("resize", function() {
-    getCanvasResolutionAndUpdate()
-});
 
 const offsets = [
     [-2, 0],
@@ -124,42 +90,6 @@ function documentLoad() {
 
     getCanvasResolutionAndUpdate()
 }
-
-function Fire() {
-    if (players[0].amunition <= 0) return
-    players[0].amunition -= 1
-    bullets.push({
-        position: {
-            x: players[0].position.x + Math.sin(players[0].facing) * playerSize,
-            y: players[0].position.y + Math.cos(players[0].facing) * playerSize
-        },
-        movementVector: {
-            x: Math.sin(players[0].facing) * bulletSpeed + players[0].movementVector.x,
-            y: Math.cos(players[0].facing) * bulletSpeed + players[0].movementVector.y
-        },
-        facing: players[0].facing,
-        lifeTime: 0,
-    })
-}
-
-function Turn(amt) {
-    players[0].turnMomentum += amt
-}
-
-function Accelerate(amt) {
-    players[0].movementVector.x += amt * Math.sin(players[0].facing)
-    players[0].movementVector.y += amt * Math.cos(players[0].facing)
-}
-
-
-// Arrow key movement. Repeat key five times a second
-//
-KeyboardController({
-    37: function() { Turn(turnSpeed); }, // Left
-    39: function() { Turn(-turnSpeed); }, // Right
-    38: function() { Accelerate(acceleration); }, // Up
-    // 32: function() { Fire() } // Space Bar
-}, 10);
 
 function positionOnScreen(pos, ignore) {
     let update = false

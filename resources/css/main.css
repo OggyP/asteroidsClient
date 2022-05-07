@@ -1,6 +1,7 @@
 /********************
        GENERAL
 ********************/
+
 body {
     overflow: hidden;
     width: 100vw;
@@ -14,6 +15,7 @@ body {
 
 
 /**INPUT**/
+
 input[type="text"],
 input[type="password"] {
     background: none;
@@ -24,7 +26,6 @@ input[type="password"] {
     border-bottom: 2px solid rgb(200, 200, 200);
     width: 250px;
     height: 50px;
-
     font-size: 20px;
     font-family: 'Didact Gothic', sans-serif;
     color: white;
@@ -39,13 +40,13 @@ input[type="password"]:focus {
 
 
 /**BUTTON**/
+
 .button {
     background: rgba(100, 100, 100, 0.5);
     margin: 10px;
     border: 1px solid rgba(100, 100, 100, 0.5);
     border-radius: 5px;
     padding: 5px;
-
     transition: background-color 50ms;
 }
 
@@ -75,11 +76,126 @@ input[type="password"]:focus {
 }
 
 
+/********************
+  IN GAME TEXT DISPLAY
+********************/
+
+div#text-display {
+    position: absolute;
+    height: 100%;
+}
+
+div#text-display * {
+    top: 20%;
+    text-align: center;
+    position: relative;
+}
+
+
+/********************
+  QUEUE SELECTOR
+********************/
+
+h1#brand-name-title {
+    font-size: min(5vw, 5vh, 3em);
+}
+
+img#middle-logo {
+    width: 20%;
+}
+
+ul#queue-selector {
+    display: inline;
+}
+
+ul#queue-selector li {
+    list-style-type: none;
+    text-align: center;
+    display: inline;
+}
+
+@media only screen and (max-width: 1200px) {
+    ul#queue-selector li {
+        list-style-type: none;
+        text-align: center;
+        display: block;
+        margin: 5vh;
+    }
+    ul#queue-selector li a {
+        font-size: 4vh !important;
+        padding: 1vh !important;
+        margin: 5vw !important;
+    }
+}
+
+ul#queue-selector li a {
+    color: white;
+    font-family: 'Roboto Mono', monospace;
+    text-decoration: none;
+    font-size: min(2vw, 3em);
+    background: rgba(100, 100, 100, 0.5);
+    border: 1px solid rgba(100, 100, 100, 0.5);
+    padding: 1vw;
+    margin: 1vw;
+    border-radius: 20px;
+}
+
+ul#queue-selector li a:hover {
+    background: rgba(100, 100, 100, 1);
+    border: 1px solid rgba(100, 100, 100, 1);
+}
+
+
+/********************
+  Nav Bar
+********************/
+
+nav {
+    height: 50px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+nav a {
+    display: inline-block;
+    height: 60px;
+    width: 60px;
+    padding: 5px;
+    background: rgb(0, 0, 0);
+    opacity: 0.5;
+    border-radius: 25px;
+    margin: 10px;
+    transition: 100ms;
+}
+
+nav a:hover {
+    background: rgb(0, 0, 0);
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+nav img {
+    height: 50px;
+}
+
+
+/********************
+  Asteroid Background
+********************/
+
+canvas.asteroid-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
 
 
 /********************
   LOGIN & REGISTER
 ********************/
+
 #account-wrapper {
     background: #3e4045;
     width: 100vw;
@@ -94,7 +210,7 @@ input[type="password"]:focus {
     z-index: -1;
 }
 
-#account-wrapper > div {
+#account-wrapper>div {
     position: fixed;
     top: 0;
 }
@@ -104,11 +220,10 @@ input[type="password"]:focus {
 }
 
 
-
-
 /********************
         MAIN
 ********************/
+
 main {
     width: 100%;
     height: 100%;
@@ -116,7 +231,7 @@ main {
     flex-direction: row;
 }
 
-main > * {
+main>* {
     margin: 20px;
     padding: 20px;
     height: calc(100% - 40px);
@@ -124,6 +239,7 @@ main > * {
 
 
 /**TITLE**/
+
 .title {
     width: 75%;
 }
@@ -134,16 +250,15 @@ main > * {
 
 
 /**OPTIONS**/
+
 .options {
     box-sizing: content-box;
     background: #23272A;
     overflow: hidden;
-
     --bdrs: 0 50px 50px 0;
     -webkit-border-radius: var(--bdrs);
     -moz-border-radius: var(--bdrs);
     border-radius: var(--bdrs);
-
     --size: 40px;
     --menu-width: 200px;
     --menu-height: 100px;
@@ -151,15 +266,12 @@ main > * {
     padding: 5px 5px 5px 40px;
     width: var(--size);
     height: var(--size);
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     position: fixed;
     top: 0;
     left: 0;
-
     --trs: 150ms;
     -webkit-transition: var(--trs);
     -moz-transition: var(--trs);
@@ -182,7 +294,6 @@ main > * {
     overflow: hidden;
     --spacer: 10px;
     width: 0;
-
     -webkit-transition: var(--trs);
     -moz-transition: var(--trs);
     -ms-transition: var(--trs);
@@ -196,26 +307,26 @@ main > * {
     width: calc(var(--menu-width) - var(--size) - var(--spacer));
 }
 
-.options > div {
+.options>div {
     padding-left: var(--size);
     display: none;
-
     position: fixed;
     top: calc(30px + var(--size));
     left: 40px;
 }
 
-.options:hover > div {
+.options:hover>div {
     display: block;
 }
 
-.options > div .button {
+.options>div .button {
     margin: 0;
     font-size: 14px;
 }
 
 
 /**GAMEMODES**/
+
 .gamemodes {
     background: #23272A;
     border-radius: 10px;
@@ -223,11 +334,13 @@ main > * {
     position: relative;
 }
 
-.gamemodes > div {
+.gamemodes>div {
     margin: 0 10%;
 }
 
-  /* dividers */
+
+/* dividers */
+
 .gamemodes hr {
     width: 80%;
     position: absolute;
@@ -242,21 +355,25 @@ main > * {
     bottom: 20%;
 }
 
-  /* icons */
-.gamemodes > * > .material-icons-round {
+
+/* icons */
+
+.gamemodes>*>.material-icons-round {
     position: absolute;
     left: 4%;
 }
 
-.multiplayer > .material-icons-round {
+.multiplayer>.material-icons-round {
     top: 14.5%;
 }
 
-.private > .material-icons-round {
+.private>.material-icons-round {
     top: 84%;
 }
 
-  /* singleplayer */
+
+/* singleplayer */
+
 .singleplayer {
     height: 10%;
     display: flex;
@@ -264,7 +381,9 @@ main > * {
     align-items: center;
 }
 
-  /* multiplayer */
+
+/* multiplayer */
+
 .multiplayer {
     overflow-x: hidden;
     overflow-y: scroll;
@@ -283,8 +402,8 @@ main > * {
     font-size: 32px;
 }
 
-.rated-select .button ~ .button,
-.unrated-select .button ~ .button {
+.rated-select .button~.button,
+.unrated-select .button~.button {
     margin: 10px 10px 10px 50px;
 }
 
@@ -292,7 +411,9 @@ main > * {
     font-size: 16px;
 }
 
-  /* private */
+
+/* private */
+
 .private {
     height: 20%;
     display: flex;
@@ -302,11 +423,10 @@ main > * {
 }
 
 
-
-
 /********************
        LOADING
 ********************/
+
 #game-type {
     margin: 1vh 0;
     font-size: 1.25vw;
@@ -314,7 +434,9 @@ main > * {
     color: lightgrey;
 }
 
-    /* Thanks to thetallweeks on CodePen for the loading animation */
+
+/* Thanks to thetallweeks on CodePen for the loading animation */
+
 .loading {
     margin-top: 0;
     position: relative;
@@ -325,8 +447,8 @@ main > * {
     position: absolute;
     display: inline-block;
     vertical-align: bottom;
-    -webkit-animation: ellipsis steps(4,end) 1000ms infinite;
-    animation: ellipsis steps(4,end) 1000ms infinite;
+    -webkit-animation: ellipsis steps(4, end) 1000ms infinite;
+    animation: ellipsis steps(4, end) 1000ms infinite;
     content: "...";
     width: 0px;
 }
@@ -339,6 +461,7 @@ main > * {
 
 
 /* GAME CODE */
+
 #game-code {
     font-family: 'Didact Gothic', sans-serif;
 }

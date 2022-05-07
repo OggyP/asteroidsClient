@@ -1,51 +1,8 @@
 function gameTick() {
+    // console.log('game tick')
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    for (let i = 0; i < asteroids.length; i++) {
-        const asteroid = asteroids[i]
-
-        drawAsteroid(asteroid)
-
-        asteroid.position.x += asteroid.direction.x * asteroidMovementSpeed
-        asteroid.position.y += asteroid.direction.y * asteroidMovementSpeed
-
-        asteroid.facing += asteroid.spin
-
-        const newPos = positionOnScreen(asteroid.position, asteroid.startPos)
-        if (newPos[0]) {
-            asteroid.position = newPos[0]
-            if ((asteroid.startPos.x && newPos[1][0]) || (asteroid.startPos.y && newPos[1][1]))
-                asteroid.allOffsetRender = true
-        }
-    }
-
-    for (let i = 0; i < players.length; i++) {
-        const player = players[i]
-        drawPlayer(player)
-        player.facing += players[i].turnMomentum
-        player.turnMomentum *= turnFriction
-
-        player.position.x += players[i].movementVector.x
-        player.position.y += players[i].movementVector.y
-        player.movementVector.x *= accelerationFriction
-        player.movementVector.y *= accelerationFriction
-
-        const newPos = positionOnScreen(player.position)
-        if (newPos[0])
-            player.position = newPos[0]
-
-        let collieded = false
-
-        for (let j = 0; j < asteroids.length; j++) {
-            const asteroid = asteroids[j]
-            if (differentInPosSqu(player.position, asteroid.position) < (playerSize + asteroid.size) ** 2)
-                collieded = true
-        }
-        if (collieded)
-            player.colour = 'blue'
-        else
-            player.colour = 'red'
-    }
+    updateAsteroids()
 
     for (let i = 0; i < bullets.length; i++) {
         const bullet = bullets[i]
@@ -124,6 +81,32 @@ function gameTick() {
         }
     }
 
-}
+    for (let i = 0; i < players.length; i++) {
+        const player = players[i]
+        drawPlayer(player)
+        player.facing += players[i].turnMomentum
+        player.turnMomentum *= turnFriction
 
-setInterval(gameTick, 10);
+        player.position.x += players[i].movementVector.x
+        player.position.y += players[i].movementVector.y
+        player.movementVector.x *= accelerationFriction
+        player.movementVector.y *= accelerationFriction
+
+        const newPos = positionOnScreen(player.position)
+        if (newPos[0])
+            player.position = newPos[0]
+
+        let collieded = false
+
+        for (let j = 0; j < asteroids.length; j++) {
+            const asteroid = asteroids[j]
+            if (differentInPosSqu(player.position, asteroid.position) < (playerSize + asteroid.size) ** 2)
+                collieded = true
+        }
+        if (collieded) {
+            player.colour = 'blue'
+            collision()
+        } else
+            player.colour = 'red'
+    }
+}

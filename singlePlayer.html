@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="UTF-8">
     <script src="/resources/js/jquery.js"></script>
-    <title>OggyP Asteroids</title>
+    <title>OggyP Asteroids - Single Player</title>
+    <meta name="description" content="">
     <!--    META-->
     <meta charset="UTF-8">
     <meta name="keywords" content="oggyp, oggy, asteroid, game, OggyP">
     <meta name="author" content="Oscar Pritchard, Kaelan Carlos, Ewan Odenthal">
     <meta name="theme-color" content="#cccccc">
     <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-    <meta property="og:title" content="OggyP Asteroids">
+    <meta property="og:title" content="OggyP Asteroids Single Player">
     <meta property="og:description" content="Play the classic arcade asteroids in both singleplayer and multiplayer modes at asteroids.oggyp.com!">
     <meta name="description" content="Play the classic arcade asteroids in both singleplayer and multiplayer modes at asteroids.oggyp.com!">
 
@@ -32,21 +33,24 @@
     <!--    END OF FONTS-->
 </head>
 
-<body class="no-scroll centre-items">
-    <canvas id="canvas" class="asteroid-background"></canvas>
-    <h1 id="brand-name-title">OggyP Asteroids</h1>
-    <h2>Select A Game Mode</h2>
-    <ul id="queue-selector">
-        <li class=""><a href="/singlePlayer">Single Player</a></li>
-        <li class=""><a href="/multiPlayer?players=2">Two Player</a></li>
-        <li class=""><a href="/multiPlayer?players=3">Three Player</a></li>
-        <li class=""><a href="/multiPlayer?players=4">Four Player</a></li>
-    </ul>
-    <script src="resources/js/render.js"></script>
-    <script src="resources/js/main.js"></script>
+<body onload="documentLoad();" class="centre-items">
+    <nav>
+        <a href="/"><img src="/resources/images/Asteroids Logo.svg"></a>
+    </nav>
+    <div id="text-display">
+        <div>
+            <h1 id="text-display-h1"></h1>
+            <button style="display: none;" class="reload-page button" onClick="window.location.reload();">Play Again</button>
+        </div>
+    </div>
+    <canvas id="canvas"></canvas>
     <script src="resources/js/functions.js"></script>
+    <script src="resources/js/render.js"></script>
+    <script src="resources/js/keyboardInput.js"></script>
+    <script src="resources/js/main.js"></script>
+    <script src="resources/js/gameTick.js"></script>
     <script src="resources/js/asteroid.js"></script>
-    <script src="/resources/js/queueingBackground.js"></script>
+    <script src="resources/js/singleplayer.js"></script>
 </body>
 
 </html>

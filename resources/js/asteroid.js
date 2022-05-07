@@ -8,6 +8,12 @@ const asteroidSizes = [0.03, 0.06, 0.09, 0.12]
 
 function randomAsteroid() {
     generateNewAsteroid(Math.floor(Math.random() * 3.999))
+
+    const currentTime = new Date()
+
+    const differenceInTime = (currentTime - startingTime) / 1000
+
+    setTimeout(randomAsteroid, 1000 * timeTillAsteroid(differenceInTime))
 }
 
 function getRandomAsteroidAngles(actualSize) {
@@ -36,10 +42,7 @@ function getRandomAsteroidAngles(actualSize) {
 }
 
 function generateNewAsteroid(size) {
-    const currentTime = new Date()
-
-    const differenceInTime = (currentTime - startingTime) / 1000
-    console.log(differenceInTime, 'seconds')
+    // console.log('asteroid added')
 
     let posToSpawn
     let validPosFound = false
@@ -49,6 +52,7 @@ function generateNewAsteroid(size) {
     const actualSize = asteroidSizes[size]
 
     while (!validPosFound) {
+        console.log('test')
         if (Math.random() >= (2 / 3)) {
             // Top or bottom
             const xVal = Math.random() * 2
@@ -82,11 +86,15 @@ function generateNewAsteroid(size) {
                 y: 0
             }
         }
-        for (let i = 0; i < players.length; i++)
-            if (differentInPosSqu(players[i].position, posToSpawn) <= 0.3)
-                continue
-            else
-                validPosFound = true
+        if (players.length) {
+            for (let i = 0; i < players.length; i++)
+                if (differentInPosSqu(players[i].position, posToSpawn) <= 0.3)
+                    continue
+                else
+                    validPosFound = true
+        } else
+            validPosFound = true
+
     }
 
 
@@ -104,8 +112,4 @@ function generateNewAsteroid(size) {
         spin: spinSpeed,
         facing: Math.random()
     })
-
-    setTimeout(randomAsteroid, 1000 * timeTillAsteroid(differenceInTime))
 }
-
-randomAsteroid()
