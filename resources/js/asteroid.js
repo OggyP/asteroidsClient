@@ -11,7 +11,7 @@ function randomAsteroid() {
 
     const currentTime = new Date()
 
-    const differenceInTime = (currentTime - startingTime) / 1000
+    const differenceInTime = (currentTime - startingTime) / 1000 * (1 + (players.length - 1) * 0.6)
 
     setTimeout(randomAsteroid, 1000 * timeTillAsteroid(differenceInTime))
 }
@@ -88,7 +88,7 @@ function generateNewAsteroid(size) {
         }
         if (players.length) {
             for (let i = 0; i < players.length; i++)
-                if (differentInPosSqu(players[i].position, posToSpawn) <= 0.3)
+                if (differentInPosSqu(players[i].position, posToSpawn) <= 0.5)
                     continue
                 else
                     validPosFound = true

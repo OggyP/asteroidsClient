@@ -4,7 +4,6 @@ players.push({
         x: 1,
         y: 0.5
     },
-    bullets: [],
     facing: 0,
     turnMomentum: 0,
     ammunition: 3,

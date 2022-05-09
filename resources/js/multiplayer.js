@@ -20,7 +20,6 @@ ws.onerror = (error) => {
 }
 
 let gameTickInterval = null
-let spamServerInterval = null
 
 ws.onmessage = (ev) => {
     try {
@@ -50,11 +49,16 @@ ws.onmessage = (ev) => {
                     if (ownPlayerNum !== i)
                         players[i] = newPlayers[i]
                 if (ownPlayerNum !== 0) {
-                    console.log(message.data.asteroids)
                     asteroids = message.data.asteroids
+                    bullets = message.data.bullets
                 }
+                break;
             case ('error'):
                 $("#text-display-h1").text(message.data.error)
+                break;
+            case ('fire'):
+                bullets.push(message.data)
+                break;
         }
     } catch (e) {
         console.log(e)
@@ -77,10 +81,17 @@ function sendToWs(ws, eventType, data) {
 }
 
 function sendServerPlayerInfo() {
-    sendToWs(ws, 'gameInfo', {
-        players: players[ownPlayerNum],
-        asteroids: asteroids
-    })
+    if (ownPlayerNum === 0) {
+        sendToWs(ws, 'gameInfo', {
+            players: players[ownPlayerNum],
+            asteroids: asteroids,
+            bullets: bullets,
+        })
+    } else {
+        sendToWs(ws, 'gameInfo', {
+            players: players[ownPlayerNum]
+        })
+    }
 }
 
 // On resize

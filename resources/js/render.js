@@ -36,7 +36,7 @@ function drawBullet(bullet) {
 
 const startAmoAngle = Math.PI - 1
 const amoAngleChange = -0.2
-const amoAmount = 200
+const amoAmount = 3
 
 let amoDispalyVectors = []
 for (let i = 0; i < amoAmount; i++) {

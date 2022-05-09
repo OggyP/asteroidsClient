@@ -43,9 +43,9 @@ function collision(index) {
 function Fire() {
     const player = players[ownPlayerNum]
     if (player.ammunition <= 0) return
-    player.ammunition -= 1
+        // player.ammunition -= 1
     const playerSpeed = Math.hypot(player.movementVector.x, player.movementVector.y)
-    player.bullets.push({
+    const newBullet = {
         position: {
             x: player.position.x + Math.sin(player.facing) * playerSize,
             y: player.position.y + Math.cos(player.facing) * playerSize
@@ -56,7 +56,12 @@ function Fire() {
         },
         facing: player.facing,
         lifeTime: 0,
-    })
+        player: ownPlayerNum
+    }
+    bullets.push(newBullet)
+    if (players.length > 1 && ownPlayerNum) {
+        sendToWs(ws, 'fire', newBullet)
+    }
 }
 
 function Turn(amt) {
@@ -68,4 +73,9 @@ function Accelerate(amt) {
     const player = players[ownPlayerNum]
     player.movementVector.x += amt * Math.sin(player.facing)
     player.movementVector.y += amt * Math.cos(player.facing)
+}
+
+function rip() {
+    players[ownPlayerNum].alive = true
+    players[ownPlayerNum].colour = 'white'
 }
