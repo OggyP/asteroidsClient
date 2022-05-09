@@ -7,7 +7,7 @@ players.push({
         bullets: [],
         facing: 0,
         turnMomentum: 0,
-        ammunition: amoAmount,
+        ammunition: 3,
         movementVector: {
             x: 0,
             y: 0

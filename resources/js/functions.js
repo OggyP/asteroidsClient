@@ -9,6 +9,8 @@ function getCanvasResolutionAndUpdate() {
     canvas.setAttribute('height', canvasSize.y);
     canvas.style.width = canvasSize.x;
     canvas.style.height = canvasSize.y;
+
+    console.log('update')
 }
 
 function updateAsteroids() {

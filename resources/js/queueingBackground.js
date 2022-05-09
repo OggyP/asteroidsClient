@@ -22,9 +22,23 @@ function backgroundTick() {
     updateAsteroids();
 }
 
+function resizeAsteroidsBackground() {
+    canvasSize = {
+        x: $(window).width(),
+        y: $(window).height()
+    }
+
+    canvas.setAttribute('width', canvasSize.x);
+    canvas.setAttribute('height', canvasSize.y);
+    canvas.style.width = canvasSize.x;
+    canvas.style.height = canvasSize.y;
+
+    console.log('update')
+}
+
 // On resize
 window.addEventListener("resize", function() {
-    getCanvasResolutionAndUpdate()
+    resizeAsteroidsBackground()
 });
 
 setInterval(backgroundTick, 10)
