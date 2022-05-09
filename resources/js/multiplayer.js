@@ -22,10 +22,6 @@ ws.onerror = (error) => {
 let gameTickInterval = null
 let spamServerInterval = null
 
-function collision() {
-
-}
-
 ws.onmessage = (ev) => {
     try {
         const message = JSON.parse(ev.data);

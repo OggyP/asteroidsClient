@@ -34,6 +34,12 @@ function updateAsteroids() {
 
 }
 
+function collision(index) {
+    if (index === ownPlayerNum) {
+        players[index].alive = false
+    }
+}
+
 function Fire() {
     const player = players[ownPlayerNum]
     if (player.ammunition <= 0) return

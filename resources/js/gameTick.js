@@ -1,8 +1,12 @@
+const deadColours = ['#600c00', '#0f0d53', '#015500', '#4f1476']
+
 function gameTick() {
     // console.log('game tick')
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     updateAsteroids()
+
+    let allPlayersDead = true
 
     for (let i = 0; i < players.length; i++) {
         const player = players[i]
@@ -15,28 +19,39 @@ function gameTick() {
             }
         }
 
+        if (!player.alive) player.colour = deadColours[i]
+        else allPlayersDead = false
         drawPlayer(player)
-        player.facing += players[i].turnMomentum
-        player.turnMomentum *= turnFriction
 
-        player.position.x += players[i].movementVector.x
-        player.position.y += players[i].movementVector.y
-        player.movementVector.x *= accelerationFriction
-        player.movementVector.y *= accelerationFriction
+        if (player.alive) {
+            player.facing += players[i].turnMomentum
+            player.turnMomentum *= turnFriction
 
-        const newPos = positionOnScreen(player.position)
-        if (newPos[0])
-            player.position = newPos[0]
+            player.position.x += players[i].movementVector.x
+            player.position.y += players[i].movementVector.y
+            player.movementVector.x *= accelerationFriction
+            player.movementVector.y *= accelerationFriction
 
-        let collieded = false
+            const newPos = positionOnScreen(player.position)
+            if (newPos[0])
+                player.position = newPos[0]
 
-        for (let j = 0; j < asteroids.length; j++) {
-            const asteroid = asteroids[j]
-            if (differentInPosSqu(player.position, asteroid.position) < (playerSize + asteroid.size) ** 2)
-                collieded = true
+            let collieded = false
+
+            for (let j = 0; j < asteroids.length; j++) {
+                const asteroid = asteroids[j]
+                if (differentInPosSqu(player.position, asteroid.position) < (playerSize + asteroid.size) ** 2)
+                    collieded = true
+            }
+            if (collieded)
+                collision(i)
         }
-        if (collieded)
-            collision()
+    }
+
+    if (allPlayersDead) {
+        clearInterval(gameTickInterval)
+        $("#text-display-h1").text("Game Over")
+        $(".reload-page").show()
     }
 }
 
