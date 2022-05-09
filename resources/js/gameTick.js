@@ -1,7 +1,6 @@
 const deadColours = ['#600c00', '#0f0d53', '#015500', '#4f1476']
 
 function gameTick() {
-    // console.log('game tick')
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     updateAsteroids()
@@ -84,7 +83,6 @@ function updateBullet(bullet) {
             if (differentInPosSqu(bullet.position, asteroid.position) < asteroid.size ** 2) {
                 killBullet = true
                 asteroids.splice(j, 1)
-                console.log(asteroid.asteroidLevel)
                 if (asteroid.asteroidLevel > 0) {
                     const angleOffsets = [-0.2, 0.2]
                     angleOffsets.forEach(offset => {
@@ -119,7 +117,6 @@ function updateBullet(bullet) {
                             spin: asteroid.spin,
                             facing: Math.random()
                         }
-                        console.log(offset, testAsteroid)
                         asteroids.push(testAsteroid)
                     })
                 }
