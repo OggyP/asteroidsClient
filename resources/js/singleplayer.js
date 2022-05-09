@@ -1,12 +1,13 @@
 players.push({
-        colour: 'red',
+        colour: '#bf2c17',
         position: {
             x: 1,
             y: 0.5
         },
+        bullets: [],
         facing: 0,
         turnMomentum: 0,
-        amunition: amoAmount,
+        ammunition: amoAmount,
         movementVector: {
             x: 0,
             y: 0
@@ -24,8 +25,6 @@ let gameTickInterval = setInterval(gameTick, 10);
 
 randomAsteroid();
 
-// Arrow key movement. Repeat key five times a second
-//
 KeyboardController({
     37: function() { Turn(turnSpeed); }, // Left
     39: function() { Turn(-turnSpeed); }, // Right

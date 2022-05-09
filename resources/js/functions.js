@@ -34,10 +34,10 @@ function updateAsteroids() {
 
 function Fire() {
     const player = players[ownPlayerNum]
-    if (player.amunition <= 0) return
-    player.amunition -= 1
+    if (player.ammunition <= 0) return
+    player.ammunition -= 1
     const playerSpeed = Math.hypot(player.movementVector.x, player.movementVector.y)
-    bullets.push({
+    player.bullets.push({
         position: {
             x: player.position.x + Math.sin(player.facing) * playerSize,
             y: player.position.y + Math.cos(player.facing) * playerSize

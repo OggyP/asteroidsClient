@@ -22,4 +22,9 @@ function backgroundTick() {
     updateAsteroids();
 }
 
+// On resize
+window.addEventListener("resize", function() {
+    getCanvasResolutionAndUpdate()
+});
+
 setInterval(backgroundTick, 10)

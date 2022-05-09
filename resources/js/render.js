@@ -36,7 +36,7 @@ function drawBullet(bullet) {
 
 const startAmoAngle = Math.PI - 1
 const amoAngleChange = -0.2
-const amoAmount = 20
+const amoAmount = 200
 
 let amoDispalyVectors = []
 for (let i = 0; i < amoAmount; i++) {
@@ -78,7 +78,7 @@ function drawSinglePlayer(player) {
 
     // Draw Amo Remaining
     ctx.fillStyle = 'white';
-    for (let i = 0; i < player.amunition; i++)
+    for (let i = 0; i < player.ammunition; i++)
         ctx.fillRect(
             pixPos.x + amoDispalyVectors[i].x * (playerRadius * 1.4) - 2,
             pixPos.y + amoDispalyVectors[i].y * (playerRadius * 1.4) - 2,
