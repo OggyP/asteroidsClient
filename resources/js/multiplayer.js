@@ -16,7 +16,7 @@ ws.onopen = (ev) => {
 ws.onerror = (error) => {
     $("#text-display-h1").html("An Error Occoured Connecting To The Server. Is the url correct?<br>You can always play single player:")
     $(".single-player.button").show()
-    console.log("Error connecting to OggyP Asteroids Web Socket", error)
+    console.error("Error connecting to OggyP Asteroids Web Socket", error)
 }
 
 let gameTickInterval = null

@@ -55,8 +55,10 @@ function gameTick() {
 
     if (allPlayersDead) {
         clearInterval(gameTickInterval)
-        if (spamServerInterval) clearInterval(spamServerInterval)
-        sendServerPlayerInfo()
+        if (spamServerInterval) {
+            clearInterval(spamServerInterval)
+            sendServerPlayerInfo()
+        }
         $("#text-display-h1").text("Game Over")
         $(".reload-page").show()
     }
